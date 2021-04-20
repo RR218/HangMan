@@ -1,3 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+
+body{
+    background-color: rgb(39, 39, 39);
+    font-family: 'Zen Dots', cursive;
+    color: white;
+    
+}
 .text-container{
     text-align: center;
+}
+
+.btn{
+    background-color: rgb(94, 0, 94);
+    border-color: rgb(31, 0, 31);
+
+}
+
+.btn:hover{
+    background-color: rgb(61, 0, 61);
+    border-color: rgb(94, 0, 94);
+}
+
+.btn:active{
+    background-color: rgb(44, 44, 44);
+    border-color: rgb(36, 36, 36);
 }

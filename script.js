@@ -12,6 +12,7 @@ let randomWords = [
     "cook",
     "evil",
     "gaming",
+    "help",
 ]
 
 let answer = "";
@@ -22,6 +23,7 @@ let guessed = [];
 function randWord() {
     answer = randomWords[Math.floor(Math.random() * randomWords.length)];
     // alert(answer)
+
 }
 
 randWord()
