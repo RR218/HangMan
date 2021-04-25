@@ -1,51 +1,109 @@
-let randomWords = [
-    "happy",
-    "color",
-    "coading",
-    "hangged",
-    "random",
-    "words",
-    "life",
-    "python",
-    "javascript",
-    "apple",
-    "cook",
-    "evil",
-    "gaming",
-    "help",
+// variables
+let answer = '';
+let maxWrong = 6;
+let wrong = 0;
+let guessed = [];
+let currentGuess = null;
+let alphabet = 'abcdefghijklmnopqrstuvwxyz'
+let words = [
+	"python",
+	"javascript",
+	"mongodb",
+	"json",
+	"java",
+	"html",
+	"css",
+	"c",
+	"csharp",
+	"golang",
+	"kotlin",
+	"php",
+	"sql",
+	"ruby"
 ]
 
-let answer = "";
-let maxWrong = 6;
-let mistakes = 0;
-let guessed = [];
-let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-'t', 'u', 'v', 'w', 'x', 'y', 'z'];
-
+// ramdom word generator
 function randWord() {
-    answer = randomWords[Math.floor(Math.random() * randomWords.length)];
-    // alert(answer)
-
+  answer = words[Math.floor(Math.random() * words.length)];
 }
 
-randWord()
+// generate buttons
+function displayButtons() {
+  let letterButtons = alphabet.split('').map(letter =>
+    `
+      <button
+        class="btn btn-lg btn-primary m-1"
+        id='` + letter + `'
+        onClick="handleGuess('` + letter + `')"
+      >
+        ` + letter + `
+      </button>
+    `).join('');
 
-
-
-function generateKeyboard() {
-    // create alphabet ul
-    keyboard = document.getElementById('keyboard');
-    letters = document.createElement('ul');
-
-    for (var i = 0; i < alphabet.length; i++) {
-        letters.id = 'alphabet';
-        list = document.createElement('button');
-        list.id = 'letter';
-        list.innerHTML = alphabet[i];
-        keyboard.appendChild(letters);
-        letters.appendChild(list);
-        console.log(keyboard);
-    }
+  document.getElementById('keyboard').innerHTML = letterButtons;
 }
-generateKeyboard();
+
+// check if guessed letter true or false
+function handleGuess(selectedLetter) {
+  guessed.indexOf(selectedLetter) === -1 ? guessed.push(selectedLetter) : null;
+  document.getElementById(selectedLetter).setAttribute('disabled', true);
+
+  if (answer.indexOf(selectedLetter) >= 0) {
+    displayCurrentGuess();
+    checkWon();
+  } else if (answer.indexOf(selectedLetter) === -1) {
+    wrong++;
+    updateWrong();
+    checkLost();
+    updatePic();
+  }
+}
+
+// update pic
+function updatePic() {
+  document.getElementById('pic').src = './images/' + wrong + '.png';
+}
+
+// check if won
+function checkWon() {
+  if (currentGuess === answer) {
+    document.getElementById('keyboard').innerHTML = 'You Won!!!';
+  }
+}
+
+// check if lost
+function checkLost() {
+  if (wrong === maxWrong) {
+    document.getElementById('answerDisplay').innerHTML = 'The answer was: ' + answer;
+    document.getElementById('keyboard').innerHTML = 'You Lost!!!';
+  }
+}
+
+// display current guess on HTML
+function displayCurrentGuess() {
+  currentGuess = answer.split('').map(letter => (guessed.indexOf(letter) >= 0 ? letter : " _ ")).join('');
+
+  document.getElementById('answerDisplay').innerHTML = currentGuess;
+}
+
+// update the current wrong guess count on HTML
+function updateWrong() {
+  document.getElementById('mistakes').innerHTML = wrong;
+}
+
+// reset the game
+function reset() {
+  wrong = 0;
+  guessed = [];
+  randWord();
+  displayCurrentGuess();
+  updateWrong();
+  displayButtons();
+  updatePic()
+}
+
+document.getElementById('maxWrong').innerHTML = maxWrong;
+
+randWord();
+displayButtons();
+displayCurrentGuess();

@@ -7,13 +7,41 @@ body{
     color: white;
     
 }
+
+.container{
+    margin-top: 10px;
+}
+
+#hangmanPic{
+    margin-bottom: 60px;
+}
+#answerDisplay{
+    margin-top: 30px;
+    margin-bottom: 60px;
+    font-size: 40px;
+
+}
+#guess{
+    font-size: 30px;
+    margin: 0;
+}
+button{
+    min-width: 50px;
+    margin:auto;
+}
 .text-container{
     text-align: center;
+}
+
+#keyboard{
+    margin: auto;
+    padding-bottom: 30px;
 }
 
 .btn{
     background-color: rgb(94, 0, 94);
     border-color: rgb(31, 0, 31);
+    margin: auto;
 
 }
 
@@ -22,7 +50,10 @@ body{
     border-color: rgb(94, 0, 94);
 }
 
-.btn:active{
-    background-color: rgb(44, 44, 44);
-    border-color: rgb(36, 36, 36);
+#guesses{
+    margin-top: 30px;
+}
+
+#answerDisplay{
+    margin-bottom: 10px;
 }
