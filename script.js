@@ -6,20 +6,20 @@ let guessed = [];
 let currentGuess = null;
 let alphabet = 'abcdefghijklmnopqrstuvwxyz'
 let words = [
+	"happy",
+	"life",
+	"anything",
+	"apple",
+	"coconut",
 	"python",
+	"hello",
+	"goodbye",
+	"cars",
+	"codingbn",
 	"javascript",
-	"mongodb",
-	"json",
-	"java",
-	"html",
-	"css",
-	"c",
-	"csharp",
-	"golang",
-	"kotlin",
-	"php",
-	"sql",
-	"ruby"
+	"television",
+	"code",
+	"fasting"
 ]
 
 // ramdom word generator
